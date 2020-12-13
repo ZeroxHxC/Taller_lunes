@@ -1,0 +1,163 @@
+#include <iostream>
+#include <stdlib.h>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+//declaracion de funciones a usar.
+void menu();
+void titulo();
+class Insumo
+{
+private:
+    string NombreIQ;
+    string Unidad_medida;
+    int Stock;
+public:
+    void setnombreIQ(string _nom){this->NombreIQ=_nom;}
+    void setunidad(string _unidad){this->Unidad_medida=_unidad;}
+    void setstock(int _stock){this->Stock=_stock;}
+    string getnombreIQ(){return this->NombreIQ;}
+    string getunidad(){return this->Unidad_medida;}
+    int getstock(){return this->Stock;}
+  };
+class Consumo
+{
+private:
+    string NombreIQ;
+    int Cantidad_consumida;
+    int Fecha;
+public:
+    void setnombreIQ(string _nom){this->NombreIQ=_nom;}
+    void setcantidad(int _cantidad){this->Cantidad_consumida=_cantidad;}
+    void setfecha(int _fecha){this->Fecha=_fecha;}
+    string getnombreIQ(){return this->NombreIQ;}
+    int getcantidad(){return this->Cantidad_consumida;}
+    int getfecha(){return this->Fecha;}
+};
+
+class Produccion
+{
+private:
+    map<string, vector<Insumo>> listaIQPlanta; //acá el stock
+    map<string, vector<Consumo>> listaCOPlanta; //acá el consumo
+
+public:
+    Produccion(){}
+    void agregarPlanta(string _planta)
+    {
+        Insumo aux2;
+        if(this->listaIQPlanta.empty()==1)//verifico si esta vacio el array map
+        {
+            aux2.setnombreIQ(_planta);
+            cout<<" esta vacia"<<"\n ";
+            this->listaIQPlanta[_planta].push_back(aux2);
+            cout<<"primer valor: "<< this->listaIQPlanta[_planta][0].getnombreIQ()<<"\n ";
+            //esta es una prueba de impresion por pantalla
+            cout<<"\n size: "<<this->listaIQPlanta.size();
+        }else{
+            aux2.setnombreIQ(_planta);
+            this->listaIQPlanta[_planta].push_back(aux2);
+            cout<<"\n size: "<<this->listaIQPlanta.size();
+            for(unsigned int i=0;i<this->listaIQPlanta[_planta].size();i++)
+            {
+                cout<<"\n valor: "<<this->listaIQPlanta[_planta][i].getnombreIQ()<<"\n ";
+            }
+        }}
+};
+
+int main()
+{
+    Produccion *p = new Produccion();
+    //menu();
+    p->agregarPlanta("hola");
+    p->agregarPlanta("hola2");
+    return 0;
+}
+
+//Cuerpo de las funciones a usar, previamente declaradas.
+void menu()
+{
+    int validador=1, opcion_menu;//variables de tipo entero a usar.
+
+    while(validador==1)//sentencia while, usada como repetidor infinito del menu, hasta que el usuario ingrese por teclado la opcion "salir".
+    {
+        titulo();//funcion simple que solo imprime por pantalla el titulo designado al proyecto, para evitar poner cout en cada limpieza de pantalla.
+        cout<<"\n >Menu de opciones:\n";
+        cout<<"  1) \n";
+        cout<<"  2) \n";
+        cout<<"  3) \n";
+        cout<<"  4) \n";
+        cout<<"  5) \n";
+        cout<<"  6) \n";
+        cout<<"  7) \n";
+        cout<<"  8) Salir\n >Opcion Seleccionada: ";//menu de opciones simple.
+        cin>>opcion_menu;//recepciona el primer caracter ingresado por teclado, independiente de si es caracter o numero, ignorando los "ceros" a la izquierda, ejemplo: 01 equivale a seleccionar la opcion 1.
+        switch (opcion_menu)//sentencia switch, funciona como control de datos ingresados, ideal para la creacion de menus simples.
+        {
+            case 1:     {
+                            cout<<"\n Has seleccionado la opcion 1.\n\n ";
+                            system("pause");//sentencia simple que pausa la ejecucion del programa, se reanuda presionando una letra cualquiera sea.
+                            system("cls");//sentencia simple que limpia la consola de ejecucion del programa.
+                            break;
+                        }
+            case 2:     {
+                            cout<<"\n Has seleccionado la opcion 2.\n\n ";
+                            system("pause");
+                            system("cls");
+                            break;
+                        }
+            case 3:     {
+                            cout<<"\n Has seleccionado la opcion 3.\n\n ";
+                            system("pause");
+                            system("cls");
+                            break;
+                        }
+            case 4:     {
+                            cout<<"\n Has seleccionado la opcion 4.\n\n ";
+                            system("pause");
+                            system("cls");
+                            break;
+                        }
+            case 5:     {
+                            cout<<"\n Has seleccionado la opcion 5.\n\n ";
+                            system("pause");
+                            system("cls");
+                            break;
+                        }
+            case 6:     {
+                            cout<<"\n Has seleccionado la opcion 6.\n\n ";
+                            system("pause");
+                            system("cls");
+                            break;
+                        }
+            case 7:     {
+                            cout<<"\n Has seleccionado la opcion 7.\n\n ";
+                            system("pause");
+                            system("cls");
+                            break;
+                        }
+            case 8:     {
+                            cout<<"\n Has seleccionado la opcion 8.\n\n ";
+                            system("pause");
+                            system("cls");
+                            validador=0;
+                            break;
+                        }
+            default:    {
+                            cout<<"\n Opcion ingresada no valida, reintente.\n\n ";//si la opcion ingresada no es valida, por defecto lo informara al usuario por pantalla.
+                        }
+
+            system("pause");
+            system("cls");
+        }
+
+    }
+    cout<<"\n\n Programa Finalizado.\n\n ";
+}
+void titulo()
+{
+    cout<<"***************************************************************";//pequeño detalle estetico.
+    cout<<"\n\t\t Bienvenidos al Manejo de AguasUDP \n\n ";//nomrbre designado como titulo de proyecto.
+}
